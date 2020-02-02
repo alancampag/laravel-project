@@ -9,6 +9,7 @@
 
                 <div class="card-body">
                     <form action="/file" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <button class="input-group-text" type="submit">Upload</button>
@@ -18,10 +19,10 @@
                                     onchange="window.displayFileName()" />
                                 <label class="custom-file-label" for="fileInput01">Choose file</label>
                             </div>
-
                         </div>
-                        <div>oi{{ $errors->first('csvFile') }}</div>
-                        @csrf
+                        @if($errors->first('csvFile'))
+                            <div class="alert-danger p-2 my-2 rounded">{{ $errors->first('csvFile') }}</div>
+                        @endif
                     </form>
                 </div>
             </div>

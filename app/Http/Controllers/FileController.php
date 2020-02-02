@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class FileController extends Controller
 {
-    public function saveFile(Request $request) {
+    public function receiveFile(Request $request) {
         $validated = $this->validateCSV();
-        $file = $validated['csvFile'];   
-        $path = $file->store('uploads');
+        $path = $this->storeFile($validated);
+        $this->readFileHeaders($path);
         return $path;
     }
 
@@ -17,6 +17,18 @@ class FileController extends Controller
         return request()->validate([
             'csvFile' => 'required|mimes:csv,txt'
         ]);
+    }
+
+    public function storeFile($validatedFile) {
+        $file = $validatedFile['csvFile'];   
+        $path = $file->store('uploads');
+        return $path;
+    }
+
+    public function readFileHeaders($filePath) {
+        $handler = fopen(storage_path('app/' . $filePath),'r');
+        $headers = fgetcsv($handler);
+        dd($headers);
     }
 }
 
