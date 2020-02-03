@@ -6,9 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-center">Selecione um arquivo CSV</div>
-
                 <div class="card-body">
-                    <form action="/file" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="input-group">
                             <div class="input-group-prepend">
