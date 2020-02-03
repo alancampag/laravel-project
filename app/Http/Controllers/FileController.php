@@ -29,10 +29,16 @@ class FileController extends Controller
         ]);
     }
 
+    public function getFileName($validatedFile) {
+        $file = $validatedFile['csvFile'];  
+        $fileName = $file->getClientOriginalName();
+        return $fileName;
+    }
+    
     public function getFilePath($validatedFile) {
         $file = $validatedFile['csvFile']; 
-        $path = $file->store('uploads','public');
-        $fullPath = public_path('storage/' . $path);
+        $path = $file->store('uploads','local');
+        $fullPath = storage_path('app/' . $path);
         return $fullPath;
     }
 
@@ -40,13 +46,7 @@ class FileController extends Controller
         $fileHeaders = str_getcsv(file($filePath)[0],';');
         array_unshift($fileHeaders, '');
         return $fileHeaders;      
-    }
-
-    public function getFileName($validatedFile) {
-        $file = $validatedFile['csvFile'];  
-        $fileName = $file->getClientOriginalName();
-        return $fileName;
-    }
+    }    
 
     public function getDbHeaders() {
         return [

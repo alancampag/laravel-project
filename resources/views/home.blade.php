@@ -10,17 +10,20 @@
                     <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="input-group">
-                            <div class="input-group-prepend">
+                            {{-- <div class="input-group-prepend">
                                 <button class="input-group-text" type="submit">Upload</button>
-                            </div>
+                            </div> --}}
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="fileInput01" name="csvFile"
                                     onchange="window.displayFileName()" />
-                                <label class="custom-file-label" for="fileInput01">Choose file</label>
+                                <label class="custom-file-label" for="fileInput01">Selecione um arquivo</label>
                             </div>
                         </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary px-5 mt-3" type="submit">Upload</button>
+                        </div>
                         @if($errors->first('csvFile'))
-                            <div class="alert-danger p-2 my-2 rounded">{{ $errors->first('csvFile') }}</div>
+                        <div class="alert-danger p-2 my-2 rounded">{{ $errors->first('csvFile') }}</div>
                         @endif
                     </form>
                 </div>
