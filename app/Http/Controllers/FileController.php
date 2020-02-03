@@ -30,7 +30,7 @@ class FileController extends Controller
     }
 
     public function getFilePath($validatedFile) {
-        $file = $validatedFile['csvFile'];  
+        $file = $validatedFile['csvFile']; 
         $path = $file->store('uploads','public');
         $fullPath = public_path('storage/' . $path);
         return $fullPath;

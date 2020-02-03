@@ -13,7 +13,7 @@ class ImportDataListener implements ShouldQueue
     {
         $request = $event->request;
         $path = $event->path;
-        foreach(file($path) as $row => $dataRow){
+        foreach(file($path) as $row => $dataRow) {
             if ($row > 0) {
                 $dataCols = explode(';', $dataRow);
                 array_unshift($dataCols, '');
@@ -39,6 +39,7 @@ class ImportDataListener implements ShouldQueue
                 $csvData->url = $dataCols[$request[18]];
                 $csvData->save();
             }
-        }               
+        }
+        unlink($path);               
     }
 }
