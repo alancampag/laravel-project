@@ -23,10 +23,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/file', 'FileController@receiveFile')->name('upload');
 Route::post('/import', 'FileController@importData')->name('import');
 
-Route::get('/event', function() {
-    event(new AllDoneEvent('hello world'));
-    dump('event send');
-
-    }
-);
 

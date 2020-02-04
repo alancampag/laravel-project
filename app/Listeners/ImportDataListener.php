@@ -11,6 +11,8 @@ use App\csvData;
 class ImportDataListener implements ShouldQueue
 {
 
+    public $timeout = 600;
+
     public function handle($event)
     {
         $request = $event->request;
