@@ -15,7 +15,7 @@ class FileController extends Controller
         session(['filePath' => $path]);
         $headers = $this->readFileHeaders($path);
         $dbHeaders = $this->getDbHeaders();
-        return view('fileHeaders', compact('dbHeaders', 'headers', 'name'));
+        return view('showTable', compact('dbHeaders', 'headers', 'name'));
     }
 
     public function importData(Request $request) {

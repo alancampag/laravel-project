@@ -4,7 +4,9 @@ namespace App\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use App\Events\AllDoneEvent;
 use App\csvData;
+
 
 class ImportDataListener implements ShouldQueue
 {
@@ -40,6 +42,7 @@ class ImportDataListener implements ShouldQueue
                 $csvData->save();
             }
         }
-        unlink($path);               
+        unlink($path);
+        event(new AllDoneEvent('all done!'));               
     }
 }
